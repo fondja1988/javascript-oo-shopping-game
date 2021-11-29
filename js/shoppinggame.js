@@ -59,10 +59,10 @@ class Rating {
         if(rateValue > 1 && rateValue <= 4) {
             this.rate = 'OK';
         }
-        if(rateValue >= 5 && rateValue <= 7) {
+        else if(rateValue >= 5 && rateValue <= 7) {
             this.rate = 'GOOD';
         }
-        if(rateValue > 7) {
+        else if(rateValue > 7) {
             this.rate = 'EXCEPTIONAL';
         } else { this.rate = 'BAD';
     }
