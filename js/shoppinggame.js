@@ -219,8 +219,8 @@ const findProductById = (id) => {
 };
 
 // Complete this function
-const generateProductId = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+const generateProductId = () => {
+    return Math.floor(Math.random() * 20) + 1;
 };
 
 
