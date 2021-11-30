@@ -208,10 +208,20 @@ function loadMasterData() {
 }
 
 // Complete this function
-const findProductById = (id) => {};
+const findProductById = (id) => {
+    return function(prod) {
+        if(id === prod.id) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+};
 
 // Complete this function
-const generateProductId = () => {};
+const generateProductId = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+};
 
 
 const getProduct = (prodList, pId) => {
