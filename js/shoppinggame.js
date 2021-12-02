@@ -111,7 +111,6 @@ const loadProducts = (map, prodId) => {
     }
 };
 
-
 // Complete the loadMagicProducts function
 const loadMagicProducts = (map, prodId) => {
     let a = new Array();
@@ -183,7 +182,6 @@ function loadMasterData() {
     productData.set("greens", { pr: 50, dt: daysLater });
     productData.set("sugar", { pr: 100, dt: oneYearLater });
 
-
     let pro = loadProducts(productData, prodId);
 
     //##############Load MagicProducts###############################
@@ -193,7 +191,6 @@ function loadMasterData() {
     magicProductData.set("pepper", { pr: 500, dt: oneYearLater, pt: 10, isB: false });
     magicProductData.set("champagne", { pr: 2000, dt: oneYearLater, pt: 40, isB: true });
     magicProductData.set("cocktails", { pr: 2000, dt: oneYearLater, pt: 40, isB: true });
-
 
     prodId = pro.length + 1;
 
@@ -223,14 +220,14 @@ const generateProductId = () => {
     return Math.floor(Math.random() * 20) + 1;
 };
 
-
 const getProduct = (prodList, pId) => {
     return prodList.find(findProductById(pId));
 };
 
-
 // Complete this function
-const calculateBill = (prod, tBill) => {};
+const calculateBill = (prod, tBill) => {
+    return `${prod.price + tBill}`;
+};
 
 const findPointsToBill = (roundedTotal) => {
     if (roundedTotal > 10 && roundedTotal <= 100) {
@@ -250,14 +247,25 @@ const findPointsToBill = (roundedTotal) => {
     }
 };
 
-
 // Complete this function
-const findPointsForExpDate = (prod) => {};
-
+const findPointsForExpDate = (prod) => {
+    if(prod.expiryDate < 30) {
+        return 10;
+    } else {
+        return 0;
+    }
+};
 
 const calculatePoints = (prod, tBill) => {
     let pointsToBill = findPointsToBill(Math.round(tBill));
     let pointsForExpDate = findPointsForExpDate(prod);
+    player.score = pointsToBill + pointsForExpDate;
+    if(prod.isBonus !== undefined) {
+        player.addPoints(prod.isBonus);
+    }
+    if(prod.points !== undefined) {
+        player.deductPoints(prod.points);
+    }
 };
 
 // Complete this function
@@ -429,6 +437,3 @@ function init(data) {
     exports.exitLost = exitLost;
     exports.exitWon = exitWon;
     exports.main = main;
-
-
-
